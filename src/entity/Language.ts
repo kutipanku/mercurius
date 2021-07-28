@@ -3,7 +3,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from './Quote';
 
 @ObjectType()
-@Entity()
+@Entity('language')
 export class Language extends BaseEntity {
   @Field(() => ID)
   @PrimaryColumn()

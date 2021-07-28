@@ -23,7 +23,6 @@ export class ReadAuthorResolver {
     @Arg('page', { nullable: true }) page: number,
     @Arg('rowPerPage', { nullable: true }) rowPerPage: number
   ): Promise<Author[] | null> {
-    console.log('rowPerPage', rowPerPage);
     let authors = [];
     if (rowPerPage === 0) {
       authors = await Author.find();

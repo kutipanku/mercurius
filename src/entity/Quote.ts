@@ -11,7 +11,7 @@ import { Author } from './Author';
 import { Language } from './Language';
 
 @ObjectType()
-@Entity()
+@Entity('quote')
 export class Quote extends BaseEntity {
   @Field(() => ID)
   @PrimaryColumn()
