@@ -18,10 +18,10 @@ export class Quote extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  // @Field(() => [Content])
-  @OneToMany(() => Content, content => content.quoteId, {
+  @Field(() => [Content])
+  @OneToMany(() => Content, content => content.quote, {
     cascade: true,
-    // eager : true
+    eager : true
   })
   contents: Content[];
 

@@ -29,7 +29,8 @@ export class ReadContentResolver {
     } else {
       contents = await Content.find({
         skip: (page - 1) * rowPerPage,
-        take: rowPerPage
+        take: rowPerPage,
+        relations: ["quote"]
       });
     }
     if (!contents) {

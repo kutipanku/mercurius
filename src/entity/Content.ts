@@ -26,7 +26,7 @@ export class Content extends BaseEntity {
   quoteId: string;
 
   @Field(() => Quote)
-  @ManyToOne(() => Quote, (quote: Quote) => quote.id, { eager : true })
+  @ManyToOne(() => Quote, (quote: Quote) => quote.id)
   @JoinColumn({ name: "quote", referencedColumnName: "id" })
   quote: Quote;
 
