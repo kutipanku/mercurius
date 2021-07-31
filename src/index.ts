@@ -4,12 +4,21 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 
+import { SayHelloResolver } from './modules/hello';
 import {
   CreateAuthorResolver,
   ReadAuthorResolver,
   UpdateAuthorResolver
 } from './modules/author';
-import { SayHelloResolver } from './modules/hello';
+import {
+  CreateLanguageResolver,
+  ReadLanguageResolver,
+  UpdateLanguageResolver
+} from './modules/language';
+import {
+  CreateQuoteResolver,
+  ReadQuoteResolver
+} from './modules/quote';
 
 import cors from 'cors';
 import { SharedContext } from './types';
@@ -26,7 +35,7 @@ const main = async (): Promise<void> => {
 
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [SayHelloResolver, CreateAuthorResolver, ReadAuthorResolver, UpdateAuthorResolver]
+    resolvers: [SayHelloResolver, CreateAuthorResolver, ReadAuthorResolver, UpdateAuthorResolver, CreateLanguageResolver, ReadLanguageResolver, UpdateLanguageResolver, CreateQuoteResolver, ReadQuoteResolver]
   });
 
   const apolloServer = new ApolloServer({
