@@ -4,11 +4,12 @@ import {
   Column,
   BaseEntity,
   ManyToOne,
-  JoinColumn
+  JoinColumn,
+  OneToMany
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Author } from './Author';
-import { Language } from './Language';
+import { Content } from './Content';
 
 @ObjectType()
 @Entity('quote')
@@ -17,33 +18,23 @@ export class Quote extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Field()
-  @Column()
-  content: string;
+  // @Field(() => [Content])
+  @OneToMany(() => Content, content => content.quoteId, {
+    cascade: true,
+    // eager : true
+  })
+  contents: Content[];
 
   @Field()
   @Column({ name: "author" })
   authorId: number;
 
   @Field(() => Author)
-  @ManyToOne(() => Author, (author: Author) => author.id, { eager : true} )
+  @ManyToOne(() => Author, (author: Author) => author.id, { eager : true } )
   @JoinColumn({ name: "author", referencedColumnName: "id" })
   author: Author;
 
   @Field()
-  @Column({ name: "language" })
-  languageId: number;
-
-  @Field(() => Language)
-  @ManyToOne(() => Language, (language: Language) => language.id, { eager : true })
-  @JoinColumn({ name: "language", referencedColumnName: "id" })
-  language: Language;
-
-  @Field()
   @Column()
   status: string;
-
-  @Field()
-  @Column()
-  isDeleted: boolean;
 }

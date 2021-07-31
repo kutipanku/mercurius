@@ -29,9 +29,12 @@ export class ReadQuoteResolver {
     } else {
       quotes = await Quote.find({
         skip: (page - 1) * rowPerPage,
-        take: rowPerPage,
+        take: rowPerPage
       });
     }
+    console.warn('=====================================');
+    console.warn('quotes', quotes);
+    console.warn('=====================================');
     if (!quotes) {
       return null;
     }
