@@ -1,6 +1,6 @@
 import {
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   Column,
   BaseEntity,
   ManyToOne,
@@ -14,24 +14,34 @@ import { Language } from './Language';
 @Entity('quote')
 export class Quote extends BaseEntity {
   @Field(() => ID)
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Field()
   @Column()
   content: string;
 
-  @ManyToOne(() => Author, (author: Author) => author.id)
-  @JoinColumn()
+  @Field()
+  @Column({ name: "author" })
+  authorId: number;
+
+  @Field(() => Author)
+  @ManyToOne(() => Author, (author: Author) => author.id, { eager : true} )
+  @JoinColumn({ name: "author", referencedColumnName: "id" })
   author: Author;
 
-  @ManyToOne(() => Language, (language: Language) => language.id)
-  @JoinColumn()
+  @Field()
+  @Column({ name: "language" })
+  languageId: number;
+
+  @Field(() => Language)
+  @ManyToOne(() => Language, (language: Language) => language.id, { eager : true })
+  @JoinColumn({ name: "language", referencedColumnName: "id" })
   language: Language;
 
   @Field()
   @Column()
-  status: boolean;
+  status: string;
 
   @Field()
   @Column()
