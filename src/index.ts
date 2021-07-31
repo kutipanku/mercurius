@@ -19,6 +19,9 @@ import {
   CreateQuoteResolver,
   ReadQuoteResolver
 } from './modules/quote';
+import {
+  ReadContentResolver
+} from './modules/content';
 
 import cors from 'cors';
 import { SharedContext } from './types';
@@ -35,7 +38,7 @@ const main = async (): Promise<void> => {
 
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [SayHelloResolver, CreateAuthorResolver, ReadAuthorResolver, UpdateAuthorResolver, CreateLanguageResolver, ReadLanguageResolver, UpdateLanguageResolver, CreateQuoteResolver, ReadQuoteResolver]
+    resolvers: [SayHelloResolver, CreateAuthorResolver, ReadAuthorResolver, UpdateAuthorResolver, CreateLanguageResolver, ReadLanguageResolver, UpdateLanguageResolver, CreateQuoteResolver, ReadQuoteResolver, ReadContentResolver]
   });
 
   const apolloServer = new ApolloServer({
