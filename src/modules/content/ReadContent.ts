@@ -30,7 +30,7 @@ export class ReadContentResolver {
       contents = await Content.find({
         skip: (page - 1) * rowPerPage,
         take: rowPerPage,
-        relations: ["quote"]
+        relations: ['quote']
       });
     }
     if (!contents) {

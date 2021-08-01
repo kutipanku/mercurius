@@ -19,19 +19,19 @@ export class Quote extends BaseEntity {
   id: string;
 
   @Field(() => [Content])
-  @OneToMany(() => Content, content => content.quote, {
+  @OneToMany(() => Content, (content) => content.quote, {
     cascade: true,
-    eager : true
+    eager: true
   })
   contents: Content[];
 
   @Field()
-  @Column({ name: "author" })
+  @Column({ name: 'author' })
   authorId: number;
 
   @Field(() => Author)
-  @ManyToOne(() => Author, (author: Author) => author.id, { eager : true } )
-  @JoinColumn({ name: "author", referencedColumnName: "id" })
+  @ManyToOne(() => Author, (author: Author) => author.id, { eager: true })
+  @JoinColumn({ name: 'author', referencedColumnName: 'id' })
   author: Author;
 
   @Field()
