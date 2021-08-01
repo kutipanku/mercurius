@@ -1,6 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Author } from '../../entity/Author';
 import { AddAuthorInput } from './input/AddAuthorInput';
+import { getCurrentDateTimeString } from '../../utils'
 
 @Resolver(Author)
 export class CreateAuthorResolver {
@@ -12,8 +13,10 @@ export class CreateAuthorResolver {
     @Arg('data')
     { name }: AddAuthorInput
   ): Promise<Author> {
+    const currentDateTime: string = getCurrentDateTimeString();
     const author = await Author.create({
-      name
+      name,
+      createDate: currentDateTime
     }).save();
 
     return author;
