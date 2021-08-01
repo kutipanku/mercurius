@@ -3,7 +3,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   BaseEntity,
-  OneToMany
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Content } from './Content';
@@ -13,28 +16,28 @@ import { Content } from './Content';
 export class Language extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Field()
   @Column()
-  name: string;
+  name!: string;
 
   @Field()
   @Column()
-  shortName: string;
+  shortName!: string;
 
   @OneToMany(() => Content, (content: Content) => content.languageId)
-  content: Content[];
+  content!: Content[];
 
-  @Field()
-  @Column()
-  createDate: string;
+  @CreateDateColumn()
+  createDate!: Date;
 
-  @Field({
+  @UpdateDateColumn({
+    default: () => null,
     nullable: true,
   })
-  @Column({
-    nullable: true,
-  })
-  updateDate: string;
+  updateDate?: Date;
+
+  @DeleteDateColumn()
+  deleteDate?: Date
 }

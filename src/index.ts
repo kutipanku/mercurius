@@ -16,7 +16,7 @@ import {
   ReadLanguageResolver,
   UpdateLanguageResolver
 } from './modules/language';
-import { CreateQuoteResolver, ReadQuoteResolver, UpdateQuoteResolver } from './modules/quote';
+import { CreateQuoteResolver, ReadQuoteResolver, UpdateQuoteResolver, DeleteQuoteResolver } from './modules/quote';
 import { ReadContentResolver } from './modules/content';
 
 import cors from 'cors';
@@ -45,8 +45,9 @@ const main = async (): Promise<void> => {
       UpdateLanguageResolver,
       CreateQuoteResolver,
       ReadQuoteResolver,
-      ReadContentResolver,
-      UpdateQuoteResolver
+      UpdateQuoteResolver,
+      DeleteQuoteResolver,
+      ReadContentResolver
     ]
   });
 

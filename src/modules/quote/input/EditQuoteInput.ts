@@ -1,5 +1,4 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
-// import { Content } from '../../../entity/Content';
 import { EditContentInput } from '../../content/input/EditContentInput';
 
 @ObjectType()

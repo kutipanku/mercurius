@@ -4,7 +4,10 @@ import {
   Column,
   BaseEntity,
   ManyToOne,
-  JoinColumn
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Language } from './Language';
@@ -15,43 +18,41 @@ import { Quote } from './Quote';
 export class Content extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Field()
   @Column()
-  text: string;
+  text!: string;
 
   @Field()
   @Column({ name: 'quote' })
-  quoteId: string;
+  quoteId!: string;
 
   @Field(() => Quote)
-  @ManyToOne(() => Quote, (quote: Quote) => quote.id, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Quote, (quote: Quote) => quote.id)
   @JoinColumn({ name: 'quote', referencedColumnName: 'id' })
-  quote: Quote;
+  quote!: Quote;
 
   @Field()
   @Column({ name: 'language' })
-  languageId: number;
+  languageId!: number;
 
   @Field(() => Language)
   @ManyToOne(() => Language, (language: Language) => language.id, {
     eager: true
   })
   @JoinColumn({ name: 'language', referencedColumnName: 'id' })
-  language: Language;
+  language!: Language;
 
-  @Field({
-    nullable: true,
-  })
-  @Column()
-  createDate: string;
+  @CreateDateColumn()
+  createDate!: Date;
 
-  @Field({
+  @UpdateDateColumn({
+    default: () => null,
     nullable: true,
   })
-  @Column({
-    nullable: true,
-  })
-  updateDate: string;
+  updateDate?: Date;
+
+  @DeleteDateColumn()
+  deleteDate?: Date
 }
