@@ -6,7 +6,7 @@ import { AddQuoteInput } from './input/AddQuoteInput';
 @Resolver(Quote)
 export class CreateQuoteResolver {
   /* ------------------------------------
-  => Add new author
+  => Add new quote
   ------------------------------------ */
   @Mutation(() => Quote)
   async createQuote(

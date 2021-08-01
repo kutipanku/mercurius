@@ -29,7 +29,8 @@ export class ReadAuthorResolver {
     } else {
       authors = await Author.find({
         skip: (page - 1) * rowPerPage,
-        take: rowPerPage
+        take: rowPerPage,
+        relations: ["quote"]
       });
     }
     if (!authors) {

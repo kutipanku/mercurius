@@ -19,6 +19,7 @@ export class Author extends BaseEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => Quote, (quote: Quote) => quote.authorId)
+  @Field(() => [Quote])
+  @OneToMany(() => Quote, (quote: Quote) => quote.author)
   quote: Quote[];
 }
