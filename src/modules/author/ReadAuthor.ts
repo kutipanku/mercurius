@@ -26,13 +26,13 @@ export class ReadAuthorResolver {
     let authors = [];
     if (rowPerPage === 0) {
       authors = await Author.find({
-        relations: ["quote"]
+        relations: ['quote']
       });
     } else {
       authors = await Author.find({
         skip: (page - 1) * rowPerPage,
         take: rowPerPage,
-        relations: ["quote"]
+        relations: ['quote']
       });
     }
     if (!authors) {

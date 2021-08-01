@@ -10,14 +10,16 @@ export class CreateQuoteResolver {
   ------------------------------------ */
   @Mutation(() => Quote)
   async createQuote(
-    @Arg('quoteData')
+    @Arg('data')
     { authorId, status, contents }: AddQuoteInput
   ): Promise<Quote> {
-    const processedContents: AddContentInput[] = contents.map((content: AddContentInput) => {
-      return {
-        ...content
+    const processedContents: AddContentInput[] = contents.map(
+      (content: AddContentInput) => {
+        return {
+          ...content
+        };
       }
-    })
+    );
     const quote = await Quote.create({
       authorId,
       status: status,

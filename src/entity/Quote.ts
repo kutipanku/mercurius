@@ -33,7 +33,10 @@ export class Quote extends BaseEntity {
   authorId!: number;
 
   @Field(() => Author)
-  @ManyToOne(() => Author, (author: Author) => author.id, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => Author, (author: Author) => author.id, {
+    eager: true,
+    onDelete: 'CASCADE'
+  })
   @JoinColumn({ name: 'author', referencedColumnName: 'id' })
   author!: Author;
 
@@ -46,10 +49,10 @@ export class Quote extends BaseEntity {
 
   @UpdateDateColumn({
     default: () => null,
-    nullable: true,
+    nullable: true
   })
   updateDate?: Date;
 
   @DeleteDateColumn()
-  deleteDate?: Date
+  deleteDate?: Date;
 }

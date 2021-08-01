@@ -23,10 +23,10 @@ export class Author extends BaseEntity {
   name!: string;
 
   @Field({
-    nullable: true,
+    nullable: true
   })
   @Column({
-    nullable: true,
+    nullable: true
   })
   pictureUrl?: string;
 
@@ -39,10 +39,10 @@ export class Author extends BaseEntity {
 
   @UpdateDateColumn({
     default: () => null,
-    nullable: true,
+    nullable: true
   })
   updateDate?: Date;
 
   @DeleteDateColumn()
-  deleteDate?: Date
+  deleteDate?: Date;
 }

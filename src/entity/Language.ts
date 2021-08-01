@@ -34,10 +34,10 @@ export class Language extends BaseEntity {
 
   @UpdateDateColumn({
     default: () => null,
-    nullable: true,
+    nullable: true
   })
   updateDate?: Date;
 
   @DeleteDateColumn()
-  deleteDate?: Date
+  deleteDate?: Date;
 }

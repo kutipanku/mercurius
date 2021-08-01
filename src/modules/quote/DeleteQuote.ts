@@ -9,10 +9,12 @@ export class DeleteQuoteResolver {
   ------------------------------------ */
   @Mutation(() => Quote)
   async deleteQuote(
-    @Arg('quoteData')
+    @Arg('data')
     { id }: DeleteQuoteInput
   ): Promise<Quote | null> {
-    const selectedQuote: Quote | undefined = await Quote.findOne({ where: { id } });
+    const selectedQuote: Quote | undefined = await Quote.findOne({
+      where: { id }
+    });
     if (!selectedQuote) {
       return null;
     }
@@ -25,10 +27,13 @@ export class DeleteQuoteResolver {
   ------------------------------------ */
   @Mutation(() => Quote)
   async restoreQuote(
-    @Arg('quoteData')
+    @Arg('data')
     { id }: DeleteQuoteInput
   ): Promise<Quote | null> {
-    const selectedQuote: Quote | undefined = await Quote.findOne({ withDeleted: true, where: { id } });
+    const selectedQuote: Quote | undefined = await Quote.findOne({
+      withDeleted: true,
+      where: { id }
+    });
     if (!selectedQuote) {
       return null;
     }

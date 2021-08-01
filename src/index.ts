@@ -16,7 +16,12 @@ import {
   ReadLanguageResolver,
   UpdateLanguageResolver
 } from './modules/language';
-import { CreateQuoteResolver, ReadQuoteResolver, UpdateQuoteResolver, DeleteQuoteResolver } from './modules/quote';
+import {
+  CreateQuoteResolver,
+  ReadQuoteResolver,
+  UpdateQuoteResolver,
+  DeleteQuoteResolver
+} from './modules/quote';
 import { ReadContentResolver } from './modules/content';
 
 import cors from 'cors';
