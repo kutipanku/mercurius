@@ -41,11 +41,15 @@ export class Content extends BaseEntity {
   @JoinColumn({ name: 'language', referencedColumnName: 'id' })
   language: Language;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column()
   createDate: string;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column({
     nullable: true,
   })

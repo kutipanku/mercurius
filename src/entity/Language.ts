@@ -30,7 +30,9 @@ export class Language extends BaseEntity {
   @Column()
   createDate: string;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column({
     nullable: true,
   })

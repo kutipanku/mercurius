@@ -1,8 +1,8 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Quote } from '../../entity/Quote';
-// import { Content } from '../../entity/Content';
 import { AddQuoteInput } from './input/AddQuoteInput';
-// import { AddContentInput } from '../content/input/AddContentInput';
+import { getCurrentDateTimeString } from '../../utils'
+import { AddContentInput } from '../content/input/AddContentInput';
 
 @Resolver(Quote)
 export class CreateQuoteResolver {
@@ -14,10 +14,18 @@ export class CreateQuoteResolver {
     @Arg('quoteData')
     { authorId, status, contents }: AddQuoteInput
   ): Promise<Quote> {
+    const currentDateTime: string = getCurrentDateTimeString();
+    const processedContents: AddContentInput[] = contents.map((content: AddContentInput) => {
+      return {
+        ...content,
+        createDate: currentDateTime
+      }
+    })
     const quote = await Quote.create({
       authorId,
       status: status,
-      contents
+      contents: processedContents,
+      createDate: currentDateTime
     }).save();
 
     return quote;

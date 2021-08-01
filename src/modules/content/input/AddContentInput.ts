@@ -8,4 +8,9 @@ export class AddContentInput {
 
   @Field()
   languageId: number;
+
+  @Field({
+    nullable: true
+  })
+  createDate: string;
 }

@@ -38,11 +38,15 @@ export class Quote extends BaseEntity {
   @Column()
   status: string;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column()
   createDate: string;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column({
     nullable: true,
   })

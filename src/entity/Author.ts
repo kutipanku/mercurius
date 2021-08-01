@@ -35,7 +35,9 @@ export class Author extends BaseEntity {
   @Column()
   createDate: string;
 
-  @Field()
+  @Field({
+    nullable: true,
+  })
   @Column({
     nullable: true,
   })
