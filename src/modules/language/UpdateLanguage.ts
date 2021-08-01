@@ -1,6 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Language } from '../../entity/Language';
 import { EditLanguageInput } from './input/EditLanguageInput';
+import { getCurrentDateTimeString } from '../../utils'
 
 @Resolver(Language)
 export class UpdateLanguageResolver {
@@ -12,11 +13,13 @@ export class UpdateLanguageResolver {
     @Arg('data')
     { id, name }: EditLanguageInput
   ): Promise<Language | null> {
+    const currentDateTime: string = getCurrentDateTimeString();
     const language = await Language.findOne({ where: { id } });
     if (!language) {
       return null;
     } else {
       language.name = name;
+      language.updateDate = currentDateTime
       await language.save();
     }
 

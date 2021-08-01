@@ -6,4 +6,8 @@ export class AddLanguageInput {
   @Field()
   @Length(1, 255)
   name: string;
+
+  @Field()
+  @Length(1, 255)
+  shortName: string;
 }

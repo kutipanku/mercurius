@@ -9,4 +9,8 @@ export class EditLanguageInput {
   @Field()
   @Length(1, 255)
   name: string;
+
+  @Field()
+  @Length(1, 255)
+  shortName: string;
 }
