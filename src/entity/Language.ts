@@ -13,7 +13,7 @@ import { Content } from './Content';
 export class Language extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Field()
   @Column()

@@ -25,7 +25,9 @@ export class ReadAuthorResolver {
   ): Promise<Author[] | null> {
     let authors = [];
     if (rowPerPage === 0) {
-      authors = await Author.find();
+      authors = await Author.find({
+        relations: ["quote"]
+      });
     } else {
       authors = await Author.find({
         skip: (page - 1) * rowPerPage,

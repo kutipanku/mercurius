@@ -1,7 +1,8 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Quote } from '../../entity/Quote';
-import { Content } from '../../entity/Content';
+// import { Content } from '../../entity/Content';
 import { AddQuoteInput } from './input/AddQuoteInput';
+// import { AddContentInput } from '../content/input/AddContentInput';
 
 @Resolver(Quote)
 export class CreateQuoteResolver {
@@ -15,16 +16,9 @@ export class CreateQuoteResolver {
   ): Promise<Quote> {
     const quote = await Quote.create({
       authorId,
-      status: status
+      status: status,
+      contents
     }).save();
-
-    for (let index = 0; index < contents.length; index++) {
-      const content = contents[index];
-      await Content.create({
-        ...content,
-        quoteId: quote.id
-      }).save();
-    }
 
     return quote;
   }

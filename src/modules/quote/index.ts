@@ -1,3 +1,3 @@
 export * from './CreateQuote';
 export * from './ReadQuote';
-// export * from './UpdateAuthor';
+export * from './UpdateQuote';

@@ -16,7 +16,7 @@ import { Content } from './Content';
 export class Quote extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Field(() => [Content])
   @OneToMany(() => Content, (content) => content.quote, {

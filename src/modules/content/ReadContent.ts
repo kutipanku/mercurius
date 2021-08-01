@@ -25,7 +25,9 @@ export class ReadContentResolver {
   ): Promise<Content[] | null> {
     let contents = [];
     if (rowPerPage === 0) {
-      contents = await Content.find();
+      contents = await Content.find({
+        relations: ['quote']
+      });
     } else {
       contents = await Content.find({
         skip: (page - 1) * rowPerPage,
