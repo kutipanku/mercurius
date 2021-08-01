@@ -20,16 +20,11 @@ export class CreateQuoteResolver {
 
     for (let index = 0; index < contents.length; index++) {
       const content = contents[index];
-      const createdContent = await Content.create({
+      await Content.create({
         ...content,
         quoteId: quote.id
       }).save();
-      console.log('createdContent', createdContent)
     }
-
-    await console.log('===================================')
-    await console.log('createdQuote', quote)
-    await console.log('===================================')
 
     return quote;
   }
