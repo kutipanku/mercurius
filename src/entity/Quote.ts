@@ -30,7 +30,7 @@ export class Quote extends BaseEntity {
   authorId: number;
 
   @Field(() => Author)
-  @ManyToOne(() => Author, (author: Author) => author.id, { eager: true })
+  @ManyToOne(() => Author, (author: Author) => author.id, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'author', referencedColumnName: 'id' })
   author: Author;
 

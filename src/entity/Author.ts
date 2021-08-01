@@ -3,7 +3,10 @@ import {
   Column,
   BaseEntity,
   OneToMany,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from './Quote';
@@ -13,11 +16,11 @@ import { Quote } from './Quote';
 export class Author extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Field()
   @Column()
-  name: string;
+  name!: string;
 
   @Field({
     nullable: true,
@@ -25,21 +28,21 @@ export class Author extends BaseEntity {
   @Column({
     nullable: true,
   })
-  pictureUrl: string;
+  pictureUrl?: string;
 
   @Field(() => [Quote])
   @OneToMany(() => Quote, (quote: Quote) => quote.author)
-  quote: Quote[];
+  quote!: Quote[];
 
-  @Field()
-  @Column()
-  createDate: string;
+  @CreateDateColumn()
+  createDate!: Date;
 
-  @Field({
+  @UpdateDateColumn({
+    default: () => null,
     nullable: true,
   })
-  @Column({
-    nullable: true,
-  })
-  updateDate: string;
+  updateDate?: Date;
+
+  @DeleteDateColumn()
+  deleteDate?: Date
 }

@@ -8,7 +8,8 @@ import { SayHelloResolver } from './modules/hello';
 import {
   CreateAuthorResolver,
   ReadAuthorResolver,
-  UpdateAuthorResolver
+  UpdateAuthorResolver,
+  DeleteAuthorResolver
 } from './modules/author';
 import {
   CreateLanguageResolver,
@@ -38,6 +39,7 @@ const main = async (): Promise<void> => {
       CreateAuthorResolver,
       ReadAuthorResolver,
       UpdateAuthorResolver,
+      DeleteAuthorResolver,
       CreateLanguageResolver,
       ReadLanguageResolver,
       UpdateLanguageResolver,
