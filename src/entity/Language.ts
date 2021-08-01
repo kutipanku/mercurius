@@ -19,6 +19,20 @@ export class Language extends BaseEntity {
   @Column()
   name: string;
 
+  @Field()
+  @Column()
+  shortName: string;
+
   @OneToMany(() => Content, (content: Content) => content.languageId)
   content: Content[];
+
+  @Field()
+  @Column()
+  createDate: string;
+
+  @Field()
+  @Column({
+    nullable: true,
+  })
+  updateDate: string;
 }

@@ -19,7 +19,23 @@ export class Author extends BaseEntity {
   @Column()
   name: string;
 
+  @Field()
+  @Column({
+    nullable: true,
+  })
+  pictureUrl: string;
+
   @Field(() => [Quote])
   @OneToMany(() => Quote, (quote: Quote) => quote.author)
   quote: Quote[];
+
+  @Field()
+  @Column()
+  createDate: string;
+
+  @Field()
+  @Column({
+    nullable: true,
+  })
+  updateDate: string;
 }

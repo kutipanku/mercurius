@@ -15,7 +15,7 @@ import { Quote } from './Quote';
 export class Content extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Field()
   @Column()
@@ -40,4 +40,14 @@ export class Content extends BaseEntity {
   })
   @JoinColumn({ name: 'language', referencedColumnName: 'id' })
   language: Language;
+
+  @Field()
+  @Column()
+  createDate: string;
+
+  @Field()
+  @Column({
+    nullable: true,
+  })
+  updateDate: string;
 }
