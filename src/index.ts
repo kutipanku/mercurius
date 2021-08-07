@@ -23,6 +23,12 @@ import {
   DeleteQuoteResolver
 } from './modules/quote';
 import { ReadContentResolver } from './modules/content';
+import {
+  CreateCategoryResolver,
+  ReadCategoryResolver,
+  UpdateCategoryResolver,
+  DeleteCategoryResolver
+} from './modules/category';
 
 import cors from 'cors';
 import { SharedContext } from './types';
@@ -52,7 +58,11 @@ const main = async (): Promise<void> => {
       ReadQuoteResolver,
       UpdateQuoteResolver,
       DeleteQuoteResolver,
-      ReadContentResolver
+      ReadContentResolver,
+      CreateCategoryResolver,
+      ReadCategoryResolver,
+      UpdateCategoryResolver,
+      DeleteCategoryResolver,
     ]
   });
 
