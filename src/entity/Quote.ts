@@ -13,6 +13,7 @@ import {
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Author } from './Author';
 import { Content } from './Content';
+import { Category } from './Category';
 
 @ObjectType()
 @Entity('quote')
@@ -39,6 +40,13 @@ export class Quote extends BaseEntity {
   })
   @JoinColumn({ name: 'author', referencedColumnName: 'id' })
   author!: Author;
+
+  @Field(() => Category)
+  @ManyToOne(() => Category, (category: Category) => category.id, {
+    eager: true
+  })
+  @JoinColumn({ name: 'category', referencedColumnName: 'id' })
+  category!: Category;
 
   @Field()
   @Column()
