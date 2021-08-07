@@ -8,6 +8,9 @@ export class AddQuoteInput {
   authorId: number;
 
   @Field()
+  categoryId: number;
+
+  @Field()
   status: string;
 
   @Field(() => [AddContentInput])

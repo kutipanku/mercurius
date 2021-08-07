@@ -11,7 +11,7 @@ export class CreateQuoteResolver {
   @Mutation(() => Quote)
   async createQuote(
     @Arg('data')
-    { authorId, status, contents }: AddQuoteInput
+    { authorId, categoryId, status, contents }: AddQuoteInput
   ): Promise<Quote> {
     const processedContents: AddContentInput[] = contents.map(
       (content: AddContentInput) => {
@@ -22,6 +22,7 @@ export class CreateQuoteResolver {
     );
     const quote = await Quote.create({
       authorId,
+      categoryId,
       status: status,
       contents: processedContents
     }).save();
