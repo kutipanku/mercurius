@@ -12,8 +12,8 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from './Quote';
 
 @ObjectType()
-@Entity('author')
-export class Author extends BaseEntity {
+@Entity('category')
+export class Category extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;
@@ -22,16 +22,8 @@ export class Author extends BaseEntity {
   @Column()
   name!: string;
 
-  @Field({
-    nullable: true
-  })
-  @Column({
-    nullable: true
-  })
-  pictureUrl?: string;
-
   @Field(() => [Quote])
-  @OneToMany(() => Quote, (quote: Quote) => quote.author)
+  @OneToMany(() => Quote, (quote: Quote) => quote.category)
   quote!: Quote[];
 
   @CreateDateColumn()
