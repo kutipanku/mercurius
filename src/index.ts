@@ -29,6 +29,12 @@ import {
   UpdateCategoryResolver,
   DeleteCategoryResolver
 } from './modules/category';
+import {
+  CreateTagResolver,
+  ReadTagResolver,
+  UpdateTagResolver,
+  DeleteTagResolver
+} from './modules/tag';
 
 import cors from 'cors';
 import { SharedContext } from './types';
@@ -63,6 +69,10 @@ const main = async (): Promise<void> => {
       ReadCategoryResolver,
       UpdateCategoryResolver,
       DeleteCategoryResolver,
+      CreateTagResolver,
+      ReadTagResolver,
+      UpdateTagResolver,
+      DeleteTagResolver
     ]
   });
 
