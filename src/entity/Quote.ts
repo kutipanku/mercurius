@@ -4,7 +4,9 @@ import {
   Column,
   BaseEntity,
   ManyToOne,
+  ManyToMany,
   JoinColumn,
+  JoinTable,
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
@@ -14,6 +16,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Author } from './Author';
 import { Content } from './Content';
 import { Category } from './Category';
+import { Tag } from './Tag';
 
 @ObjectType()
 @Entity('quote')
@@ -41,9 +44,14 @@ export class Quote extends BaseEntity {
   @JoinColumn({ name: 'author', referencedColumnName: 'id' })
   author!: Author;
 
+  @Field()
+  @Column({ name: 'category' })
+  categoryId!: number;
+
   @Field(() => Category)
   @ManyToOne(() => Category, (category: Category) => category.id, {
-    eager: true
+    eager: true,
+    onDelete: 'CASCADE'
   })
   @JoinColumn({ name: 'category', referencedColumnName: 'id' })
   category!: Category;
@@ -51,6 +59,13 @@ export class Quote extends BaseEntity {
   @Field()
   @Column()
   status!: string;
+
+  @Field(() => [Tag])
+  @ManyToMany(() => Tag, tag => tag.quotes, {
+    eager: true
+  })
+  @JoinTable()
+  tags: Tag[];
 
   @CreateDateColumn()
   createDate!: Date;
