@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
-import { AddContentInput } from '../../content/input/AddContentInput';
+import { AddQuoteContentInput } from '../../quoteContent/input/AddQuoteContentInput';
 
 @ObjectType()
 @InputType()
@@ -13,6 +13,9 @@ export class AddQuoteInput {
   @Field()
   status: string;
 
-  @Field(() => [AddContentInput])
-  contents: AddContentInput[];
+  @Field(() => [AddQuoteContentInput])
+  contents: AddQuoteContentInput[];
+
+  @Field(() => [Number])
+  tags: number[];
 }

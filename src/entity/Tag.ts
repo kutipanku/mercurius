@@ -1,6 +1,6 @@
 import {
   Entity,
-  Column,
+  OneToMany,
   BaseEntity,
   ManyToMany,
   PrimaryGeneratedColumn,
@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from './Quote';
+import { TagContent } from './TagContent';
 
 @ObjectType()
 @Entity('tag')
@@ -19,9 +20,12 @@ export class Tag extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Field()
-  @Column()
-  name!: string;
+  @Field(() => [TagContent])
+  @OneToMany(() => TagContent, (content) => content.tag, {
+    cascade: true,
+    eager: true
+  })
+  contents!: TagContent[];
 
   @Field(() => [Quote])
   @ManyToMany(() => Quote, (quote: Quote) => quote.tags)

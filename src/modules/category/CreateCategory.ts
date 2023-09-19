@@ -10,10 +10,10 @@ export class CreateCategoryResolver {
   @Mutation(() => Category)
   async createCategory(
     @Arg('data')
-    { name }: AddCategoryInput
+    { contents }: AddCategoryInput
   ): Promise<Category> {
     const category = await Category.create({
-      name
+      contents
     }).save();
 
     return category;

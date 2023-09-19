@@ -1,14 +1,14 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { Content } from '../../entity/Content';
+import { QuoteContent } from '../../entity/QuoteContent';
 
-@Resolver(Content)
-export class ReadContentResolver {
+@Resolver(QuoteContent)
+export class ReadQuoteContentResolver {
   /* ------------------------------------
   => Get content by id
   ------------------------------------ */
-  @Query(() => Content, { nullable: true })
-  async content(@Arg('id') id: string): Promise<Content | null> {
-    const content = await Content.findOne({ where: { id } });
+  @Query(() => QuoteContent, { nullable: true })
+  async content(@Arg('id') id: string): Promise<QuoteContent | null> {
+    const content = await QuoteContent.findOne({ where: { id } });
     if (!content) {
       return null;
     }
@@ -18,18 +18,18 @@ export class ReadContentResolver {
   /* ------------------------------------
   => Get all contents
   ------------------------------------ */
-  @Query(() => [Content])
+  @Query(() => [QuoteContent])
   async allContent(
     @Arg('page', { nullable: true }) page: number,
     @Arg('rowPerPage', { nullable: true }) rowPerPage: number
-  ): Promise<Content[] | null> {
+  ): Promise<QuoteContent[] | null> {
     let contents = [];
     if (rowPerPage === 0) {
-      contents = await Content.find({
+      contents = await QuoteContent.find({
         relations: ['quote']
       });
     } else {
-      contents = await Content.find({
+      contents = await QuoteContent.find({
         skip: (page - 1) * rowPerPage,
         take: rowPerPage,
         relations: ['quote']

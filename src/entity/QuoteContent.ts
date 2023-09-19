@@ -14,8 +14,8 @@ import { Language } from './Language';
 import { Quote } from './Quote';
 
 @ObjectType()
-@Entity('content')
-export class Content extends BaseEntity {
+@Entity('qoute_content')
+export class QuoteContent extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;

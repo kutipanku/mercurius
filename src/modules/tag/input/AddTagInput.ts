@@ -1,9 +1,8 @@
-import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+import { AddTagContentInput } from '../../tagContent/input/AddTagContentInput';
 
 @InputType()
 export class AddTagInput {
-  @Field()
-  @Length(1, 255)
-  name: string;
+  @Field(() => [AddTagContentInput])
+  contents: AddTagContentInput[];
 }

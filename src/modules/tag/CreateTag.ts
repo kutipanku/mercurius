@@ -10,10 +10,10 @@ export class CreateTagResolver {
   @Mutation(() => Tag)
   async createTag(
     @Arg('data')
-    { name }: AddTagInput
+    { contents }: AddTagInput
   ): Promise<Tag> {
     const tag = await Tag.create({
-      name
+      contents
     }).save();
 
     return tag;

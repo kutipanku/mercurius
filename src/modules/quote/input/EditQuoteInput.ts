@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
-import { EditContentInput } from '../../content/input/EditContentInput';
+import { EditQuoteContentInput } from '../../quoteContent/input/EditQuoteContentInput';
 import { EditTagInput } from '../../tag/input/EditTagInput';
 
 @ObjectType()
@@ -17,6 +17,6 @@ export class EditQuoteInput {
   @Field(() => [EditTagInput])
   tags: EditTagInput[];
 
-  @Field(() => [EditContentInput])
-  contents: EditContentInput[];
+  @Field(() => [EditQuoteContentInput])
+  contents: EditQuoteContentInput[];
 }

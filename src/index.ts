@@ -22,7 +22,7 @@ import {
   UpdateQuoteResolver,
   DeleteQuoteResolver
 } from './modules/quote';
-import { ReadContentResolver } from './modules/content';
+import { ReadQuoteContentResolver } from './modules/quoteContent';
 import {
   CreateCategoryResolver,
   ReadCategoryResolver,
@@ -47,8 +47,6 @@ const main = async (): Promise<void> => {
     console.log('Failed to load env variables | ', result.error);
   }
 
-  console.log(result.parsed);
-
   await createConnection();
   const schema = await buildSchema({
     resolvers: [
@@ -64,7 +62,7 @@ const main = async (): Promise<void> => {
       ReadQuoteResolver,
       UpdateQuoteResolver,
       DeleteQuoteResolver,
-      ReadContentResolver,
+      ReadQuoteContentResolver,
       CreateCategoryResolver,
       ReadCategoryResolver,
       UpdateCategoryResolver,
@@ -92,8 +90,7 @@ const main = async (): Promise<void> => {
   apolloServer.applyMiddleware({ app, cors: false });
   app.listen(process.env.APP_PORT || 4000, () => {
     console.log(
-      `Server started on http://localhost:${
-        process.env.APP_PORT || 4000
+      `Server started on http://localhost:${process.env.APP_PORT || 4000
       }/graphql`
     );
   });
