@@ -14,7 +14,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Author } from './Author';
-import { Content } from './Content';
+import { QuoteContent } from './QuoteContent';
 import { Category } from './Category';
 import { Tag } from './Tag';
 
@@ -25,12 +25,12 @@ export class Quote extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Field(() => [Content])
-  @OneToMany(() => Content, (content) => content.quote, {
+  @Field(() => [QuoteContent])
+  @OneToMany(() => QuoteContent, (content) => content.quote, {
     cascade: true,
     eager: true
   })
-  contents!: Content[];
+  contents!: QuoteContent[];
 
   @Field()
   @Column({ name: 'author' })

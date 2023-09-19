@@ -2,15 +2,13 @@ import { Field, InputType, ObjectType } from 'type-graphql';
 
 @ObjectType()
 @InputType()
-export class AddContentInput {
+export class EditTagContentInput {
+  @Field()
+  id: number;
+
   @Field()
   text: string;
 
   @Field()
   languageId: number;
-
-  @Field({
-    nullable: true
-  })
-  createDate: string;
 }

@@ -1,12 +1,11 @@
-import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+import { EditTagContentInput } from '../../tagContent/input/EditTagContentInput';
 
 @InputType()
 export class EditTagInput {
   @Field()
   id: number;
 
-  @Field()
-  @Length(1, 255)
-  name: string;
+  @Field(() => [EditTagContentInput])
+  contents: EditTagContentInput[];
 }

@@ -1,12 +1,11 @@
-import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+import { EditCategoryContentInput } from '../../categoryContent/input/EditCategoryContentInput';
 
 @InputType()
 export class EditCategoryInput {
   @Field()
   id: number;
 
-  @Field()
-  @Length(1, 255)
-  name: string;
+  @Field(() => [EditCategoryContentInput])
+  contents: EditCategoryContentInput[];
 }

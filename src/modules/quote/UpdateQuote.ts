@@ -1,10 +1,10 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Quote } from '../../entity/Quote';
 import { Author } from '../../entity/Author';
-import { Content } from '../../entity/Content';
+import { QuoteContent } from '../../entity/QuoteContent';
 import { Tag } from '../../entity/Tag';
 import { EditQuoteInput } from './input/EditQuoteInput';
-import { EditContentInput } from '../content/input/EditContentInput';
+import { EditQuoteContentInput } from '../quoteContent/input/EditQuoteContentInput';
 import { EditTagInput } from '../tag/input/EditTagInput';
 
 @Resolver(Quote)
@@ -38,8 +38,8 @@ export class UpdateQuoteResolver {
 
     selectedQuote.author = newAuthor;
 
-    const editedContents = await Promise.all(contents.map(async (content: EditContentInput, index: number) => {
-      const contentFromDB = await Content.findOne({
+    const editedContents = await Promise.all(contents.map(async (content: EditQuoteContentInput, index: number) => {
+      const contentFromDB = await QuoteContent.findOne({
         where: {
           id: content.id
         }
@@ -67,7 +67,7 @@ export class UpdateQuoteResolver {
     //   console.log('==================================')
     //   console.log('currentTag', currentTag)
     //   console.log('==================================')
-      
+
 
     //   if (currentTag) {
     //     tagResult.push(currentTag);
@@ -82,7 +82,7 @@ export class UpdateQuoteResolver {
     // console.log('==================================')
     // console.log('tagResult', tagResult)
     // console.log('==================================')
-    
+
     // ).then(() => {
     //   console.log('==================================')
     //   console.log('tagResult', tagResult)
@@ -105,12 +105,12 @@ export class UpdateQuoteResolver {
 
     console.log('==================================')
     console.log('editedTags', editedTags)
-    console.log('==================================')    
+    console.log('==================================')
 
     selectedQuote.tags = editedTags;
 
-    
-    
+
+
     // tags.forEach((tag: EditTagInput, tagIndex: number) => {
     //   selectedQuote.tags.forEach(
     //     (tagEntity: Tag, tagEntityIndex: number) => {
@@ -126,7 +126,7 @@ export class UpdateQuoteResolver {
 
     console.log('==================================')
     console.log('selectedQuote', selectedQuote)
-    console.log('==================================') 
+    console.log('==================================')
 
     await selectedQuote.save();
 
