@@ -1,5 +1,6 @@
 import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+import { EditAuthorContentInput } from '../../authorContent/input/EditAuthorContentInput';
 
 @InputType()
 export class EditAuthorInput {
@@ -15,4 +16,7 @@ export class EditAuthorInput {
   })
   @Length(1, 255)
   pictureUrl: string;
+
+  @Field(() => [EditAuthorContentInput], { nullable: true })
+  contents: EditAuthorContentInput[];
 }

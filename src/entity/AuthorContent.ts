@@ -11,11 +11,11 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Language } from './Language';
-import { Category } from './Category';
+import { Author } from './Author';
 
 @ObjectType()
-@Entity('category_content')
-export class CategoryContent extends BaseEntity {
+@Entity('author_content')
+export class AuthorContent extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;
@@ -25,13 +25,13 @@ export class CategoryContent extends BaseEntity {
   text!: string;
 
   @Field()
-  @Column({ name: 'category' })
-  categoryId!: number;
+  @Column({ name: 'author' })
+  authorId!: number;
 
-  @Field(() => Category)
-  @ManyToOne(() => Category, (category: Category) => category.id)
-  @JoinColumn({ name: 'category', referencedColumnName: 'id' })
-  category!: Category;
+  @Field(() => Author)
+  @ManyToOne(() => Author, (author: Author) => author.id)
+  @JoinColumn({ name: 'author', referencedColumnName: 'id' })
+  author!: Author;
 
   @Field()
   @Column({ name: 'language' })

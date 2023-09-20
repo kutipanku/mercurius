@@ -2,7 +2,10 @@ import { Field, InputType, ObjectType } from 'type-graphql';
 
 @ObjectType()
 @InputType()
-export class AddQuoteContentInput {
+export class EditAuthorContentInput {
+  @Field()
+  id: number;
+
   @Field()
   text: string;
 

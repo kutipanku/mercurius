@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from './Quote';
+import { AuthorContent } from './AuthorContent';
 
 @ObjectType()
 @Entity('author')
@@ -29,6 +30,13 @@ export class Author extends BaseEntity {
     nullable: true
   })
   pictureUrl?: string;
+
+  @Field(() => [AuthorContent])
+  @OneToMany(() => AuthorContent, (content) => content.author, {
+    cascade: true,
+    eager: true
+  })
+  contents!: AuthorContent[];
 
   @Field(() => [Quote])
   @OneToMany(() => Quote, (quote: Quote) => quote.author)
