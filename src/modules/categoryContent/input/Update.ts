@@ -2,7 +2,7 @@ import { Field, InputType, ObjectType } from 'type-graphql';
 
 @ObjectType()
 @InputType()
-export class EditCategoryContentInput {
+export class UpdateCategoryContentInput {
   @Field()
   id: number;
 

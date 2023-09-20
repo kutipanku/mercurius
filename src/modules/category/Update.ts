@@ -1,8 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Category } from '../../entity/Category';
-import { CategoryContent } from '../../entity/CategoryContent';
-import { EditCategoryInput } from './input/EditCategoryInput';
-import { EditCategoryContentInput } from '../categoryContent/input/EditCategoryContentInput';
+import { Category, CategoryContent } from '@/entity';
+import { UpdateCategoryInput } from '@/modules/category/input';
+import { UpdateCategoryContentInput } from '@/modules/categoryContent/input';
 
 @Resolver(Category)
 export class UpdateCategoryResolver {
@@ -12,13 +11,13 @@ export class UpdateCategoryResolver {
   @Mutation(() => Category)
   async updateCategory(
     @Arg('data')
-    { id, contents }: EditCategoryInput
+    { id, contents }: UpdateCategoryInput
   ): Promise<Category | null> {
     const category = await Category.findOne({ where: { id } });
     if (!category) {
       return null;
     } else {
-      const editedContents = await Promise.all(contents.map(async (content: EditCategoryContentInput, index: number) => {
+      const editedContents = await Promise.all(contents.map(async (content: UpdateCategoryContentInput, index: number) => {
         const contentFromDB = await CategoryContent.findOne({
           where: {
             id: content.id

@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql';
-import { AddCategoryContentInput } from '../../categoryContent/input/AddCategoryContentInput';
+import { AddCategoryContentInput } from '@/modules/categoryContent/input';
 
 @InputType()
 export class AddCategoryInput {

@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { Category } from '../../entity/Category';
+import { Category } from '@/entity';
 
 @Resolver(Category)
 export class ReadCategoryResolver {

@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Author } from '@/entity/Author';
-import { EditAuthorInput } from '@/modules/author/input';
+import { Author } from '@/entity';
+import { UpdateAuthorInput } from '@/modules/author/input';
 
 @Resolver(Author)
 export class UpdateAuthorResolver {
@@ -10,7 +10,7 @@ export class UpdateAuthorResolver {
   @Mutation(() => Author)
   async updateAuthor(
     @Arg('data')
-    { id, name, pictureUrl }: EditAuthorInput
+    { id, name, pictureUrl }: UpdateAuthorInput
   ): Promise<Author | null> {
     const author = await Author.findOne({ where: { id } });
     if (!author) {

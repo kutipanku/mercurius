@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Category } from '../../entity/Category';
-import { DeleteCategoryInput } from './input/DeleteCategoryInput';
+import { Category } from '@/entity';
+import { DeleteCategoryInput } from '@/modules/category/input';
 
 @Resolver(Category)
 export class DeleteCategoryResolver {

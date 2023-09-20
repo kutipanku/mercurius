@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { Author } from '@/entity/Author';
+import { Author } from '@/entity';
 import { AuthorResponse } from '@/modules/author/response'
 
 @Resolver(Author)

@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql';
-import { Author } from '@/entity/Author';
+import { Author } from '@/entity';
 
 @ObjectType()
 export class AuthorResponse {

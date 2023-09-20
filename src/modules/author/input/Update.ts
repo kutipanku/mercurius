@@ -1,9 +1,9 @@
 import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
-import { EditAuthorContentInput } from '../../authorContent/input/EditAuthorContentInput';
+import { EditAuthorContentInput } from '@/modules/authorContent/input';
 
 @InputType()
-export class EditAuthorInput {
+export class UpdateAuthorInput {
   @Field()
   id: number;
 
