@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Author } from '../../entity/Author';
-import { AddAuthorInput } from './input/AddAuthorInput';
+import { Author } from '@/entity/Author';
+import { CreateAuthorInput } from '@/modules/author/input';
 
 @Resolver(Author)
 export class CreateAuthorResolver {
@@ -10,7 +10,7 @@ export class CreateAuthorResolver {
   @Mutation(() => Author)
   async createAuthor(
     @Arg('data')
-    { name, pictureUrl, contents }: AddAuthorInput
+    { name, pictureUrl, contents }: CreateAuthorInput
   ): Promise<Author> {
     const author = await Author.create({
       name, pictureUrl, contents

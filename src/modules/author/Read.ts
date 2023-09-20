@@ -1,5 +1,6 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { Author } from '../../entity/Author';
+import { Author } from '@/entity/Author';
+import { AuthorResponse } from '@/modules/author/response'
 
 @Resolver(Author)
 export class ReadAuthorResolver {
@@ -7,8 +8,8 @@ export class ReadAuthorResolver {
   => Get author by id
   ------------------------------------ */
   @Query(() => Author, { nullable: true })
-  async author(@Arg('id') id: string): Promise<Author | null> {
-    const author = await Author.findOne({ where: { id } });
+  async author(@Arg('id') id: number): Promise<Author | null> {
+    const author = await Author.findOne({ where: { id }, relations: ['quotes'] });
     if (!author) {
       return null;
     }
@@ -18,26 +19,39 @@ export class ReadAuthorResolver {
   /* ------------------------------------
   => Get all authors
   ------------------------------------ */
-  @Query(() => [Author])
+  @Query(() => AuthorResponse)
   async allAuthor(
     @Arg('page', { nullable: true }) page: number,
     @Arg('rowPerPage', { nullable: true }) rowPerPage: number
-  ): Promise<Author[] | null> {
+  ): Promise<AuthorResponse | null> {
     let authors = [];
     if (rowPerPage === 0) {
       authors = await Author.find({
-        relations: ['quote']
+        relations: ['quotes']
       });
     } else {
       authors = await Author.find({
         skip: (page - 1) * rowPerPage,
         take: rowPerPage,
-        relations: ['quote']
+        relations: ['quotes']
       });
     }
+
     if (!authors) {
       return null;
     }
-    return authors;
+
+    const count = await Author.count();
+
+    const response: AuthorResponse = {
+      page,
+      showing: authors.length,
+      total: count,
+      data: authors,
+    }
+
+    return response;
   }
+
+  // TODO: implement @FieldResolver for quotes
 }

@@ -40,7 +40,7 @@ export class Author extends BaseEntity {
 
   @Field(() => [Quote])
   @OneToMany(() => Quote, (quote: Quote) => quote.author)
-  quote!: Quote[];
+  quotes!: Quote[];
 
   @CreateDateColumn()
   createDate!: Date;

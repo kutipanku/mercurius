@@ -3,7 +3,7 @@ import { Field, InputType } from 'type-graphql';
 import { AddAuthorContentInput } from '../../authorContent/input/AddAuthorContentInput';
 
 @InputType()
-export class AddAuthorInput {
+export class CreateAuthorInput {
   @Field()
   @Length(1, 255)
   name: string;

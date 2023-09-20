@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Author } from '../../entity/Author';
-import { EditAuthorInput } from './input/EditAuthorInput';
+import { Author } from '@/entity/Author';
+import { EditAuthorInput } from '@/modules/author/input';
 
 @Resolver(Author)
 export class UpdateAuthorResolver {
