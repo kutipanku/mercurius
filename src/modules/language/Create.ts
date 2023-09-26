@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Language } from '../../entity/Language';
-import { AddLanguageInput } from './input/AddLanguageInput';
+import { Language } from '@/entity';
+import { CreateLanguageInput } from '@/modules/language/input';
 
 @Resolver(Language)
 export class CreateLanguageResolver {
@@ -10,7 +10,7 @@ export class CreateLanguageResolver {
   @Mutation(() => Language)
   async createLanguage(
     @Arg('data')
-    { name, shortName }: AddLanguageInput
+    { name, shortName }: CreateLanguageInput
   ): Promise<Language> {
     const language = await Language.create({
       name,

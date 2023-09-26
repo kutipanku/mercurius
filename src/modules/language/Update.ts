@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Language } from '../../entity/Language';
-import { EditLanguageInput } from './input/EditLanguageInput';
+import { Language } from '@/entity/Language';
+import { UpdateLanguageInput } from '@/modules/language/input';
 
 @Resolver(Language)
 export class UpdateLanguageResolver {
@@ -10,7 +10,7 @@ export class UpdateLanguageResolver {
   @Mutation(() => Language)
   async updateLanguage(
     @Arg('data')
-    { id, name }: EditLanguageInput
+    { id, name }: UpdateLanguageInput
   ): Promise<Language | null> {
     const language = await Language.findOne({ where: { id } });
     if (!language) {

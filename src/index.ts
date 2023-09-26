@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 
-import { SayHelloResolver } from './modules/hello';
+import { SayPongResolver } from './modules/ping';
 import {
   CreateAuthorResolver,
   ReadAuthorResolver,
@@ -50,7 +50,7 @@ const main = async (): Promise<void> => {
   await createConnection();
   const schema = await buildSchema({
     resolvers: [
-      SayHelloResolver,
+      SayPongResolver,
       CreateAuthorResolver,
       ReadAuthorResolver,
       UpdateAuthorResolver,

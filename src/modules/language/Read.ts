@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { Language } from '../../entity/Language';
+import { Language } from '@/entity';
 
 @Resolver(Language)
 export class ReadLanguageResolver {

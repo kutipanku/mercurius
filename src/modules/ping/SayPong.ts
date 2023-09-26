@@ -1,12 +1,12 @@
 import { Resolver, Query } from 'type-graphql';
 
 @Resolver()
-export class SayHelloResolver {
+export class SayPongResolver {
   /* ------------------------------------
-  => Get author by id
+  => Used for service healt check
   ------------------------------------ */
   @Query()
-  hello(): string {
-    return 'Hello World!';
+  ping(): string {
+    return 'pong';
   }
 }
