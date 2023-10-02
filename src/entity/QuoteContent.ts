@@ -13,7 +13,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Language } from './Language';
 import { Quote } from './Quote';
 
-@ObjectType()
+@ObjectType('QuoteContentEntity')
 @Entity('qoute_content')
 export class QuoteContent extends BaseEntity {
   @Field(() => ID)

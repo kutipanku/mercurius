@@ -1,7 +1,7 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 import { AddQuoteContentInput } from '../../quoteContent/input/AddQuoteContentInput';
 
-@ObjectType()
+@ObjectType('AddQuoteInput')
 @InputType()
 export class AddQuoteInput {
   @Field()

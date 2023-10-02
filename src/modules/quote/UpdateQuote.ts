@@ -1,8 +1,5 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Quote } from '../../entity/Quote';
-import { Author } from '../../entity/Author';
-import { QuoteContent } from '../../entity/QuoteContent';
-import { Tag } from '../../entity/Tag';
+import { Author, Quote, QuoteContent, Tag } from '@/entity';
 import { EditQuoteInput } from './input/EditQuoteInput';
 import { EditQuoteContentInput } from '../quoteContent/input/EditQuoteContentInput';
 import { EditTagInput } from '../tag/input/EditTagInput';

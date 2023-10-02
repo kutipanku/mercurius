@@ -13,12 +13,9 @@ import {
   DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Author } from './Author';
-import { QuoteContent } from './QuoteContent';
-import { Category } from './Category';
-import { Tag } from './Tag';
+import { Author, Category, QuoteContent, Tag } from '@/entity';
 
-@ObjectType()
+@ObjectType('QuoteEntity')
 @Entity('quote')
 export class Quote extends BaseEntity {
   @Field(() => ID)

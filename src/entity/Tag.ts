@@ -10,10 +10,9 @@ import {
   JoinTable
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Quote } from './Quote';
-import { TagContent } from './TagContent';
+import { Quote, TagContent } from '@/entity';
 
-@ObjectType()
+@ObjectType('TagEntity')
 @Entity('tag')
 export class Tag extends BaseEntity {
   @Field(() => ID)

@@ -1,6 +1,5 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Quote } from '../../entity/Quote';
-import { Tag } from '../../entity/Tag';
+import { Quote, Tag } from '@/entity';
 import { AddQuoteInput } from './input/AddQuoteInput';
 
 @Resolver(Quote)

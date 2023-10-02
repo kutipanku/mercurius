@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 
-@ObjectType()
+@ObjectType('AddAuthorContentInput')
 @InputType()
 export class AddAuthorContentInput {
   @Field()

@@ -8,10 +8,10 @@ import {
   DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Quote } from './Quote';
+import { Quote } from '@/entity';
 import { CategoryContent } from './CategoryContent';
 
-@ObjectType()
+@ObjectType('CategoryEntity')
 @Entity('category')
 export class Category extends BaseEntity {
   @Field(() => ID)

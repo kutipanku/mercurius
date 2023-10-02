@@ -10,10 +10,9 @@ import {
   DeleteDateColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Language } from './Language';
-import { Tag } from './Tag';
+import { Language, Tag } from '@/entity';
 
-@ObjectType()
+@ObjectType('TagContentEntity')
 @Entity('tag_content')
 export class TagContent extends BaseEntity {
   @Field(() => ID)

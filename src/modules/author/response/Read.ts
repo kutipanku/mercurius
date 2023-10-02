@@ -1,7 +1,7 @@
 import { ObjectType, Field } from 'type-graphql';
 import { Author } from '@/entity';
 
-@ObjectType()
+@ObjectType('AuthorResponse')
 export class AuthorResponse {
   @Field()
   page!: number;

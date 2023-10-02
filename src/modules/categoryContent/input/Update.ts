@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 
-@ObjectType()
+@ObjectType('UpdateCategoryContentInput')
 @InputType()
 export class UpdateCategoryContentInput {
   @Field()

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
-@ObjectType()
+@ObjectType('LanguageEntity')
 @Entity('language')
 export class Language extends BaseEntity {
   @Field(() => ID)

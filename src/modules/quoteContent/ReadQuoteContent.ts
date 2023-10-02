@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg } from 'type-graphql';
-import { QuoteContent } from '../../entity/QuoteContent';
+import { QuoteContent } from '@/entity';
 
 @Resolver(QuoteContent)
 export class ReadQuoteContentResolver {

@@ -1,7 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { Tag } from '../../entity/Tag';
+import { Tag, TagContent } from '@/entity';
 import { EditTagInput } from './input/EditTagInput';
-import { TagContent } from '../../entity/TagContent';
 import { EditTagContentInput } from '../tagContent/input/EditTagContentInput';
 
 @Resolver(Tag)
