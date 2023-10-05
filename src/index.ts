@@ -3,42 +3,31 @@ import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
-
-import { SayPongResolver } from './modules/ping';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import {
+  SayPongResolver,
   CreateAuthorResolver,
   ReadAuthorResolver,
   UpdateAuthorResolver,
-  DeleteAuthorResolver
-} from './modules/author';
-import {
+  DeleteAuthorResolver,
   CreateLanguageResolver,
   ReadLanguageResolver,
-  UpdateLanguageResolver
-} from './modules/language';
-import {
+  UpdateLanguageResolver,
   CreateQuoteResolver,
   ReadQuoteResolver,
   UpdateQuoteResolver,
-  DeleteQuoteResolver
-} from './modules/quote';
-import { ReadQuoteContentResolver } from './modules/quoteContent';
-import {
+  DeleteQuoteResolver,
   CreateCategoryResolver,
   ReadCategoryResolver,
   UpdateCategoryResolver,
-  DeleteCategoryResolver
-} from './modules/category';
-import {
+  DeleteCategoryResolver,
   CreateTagResolver,
   ReadTagResolver,
   UpdateTagResolver,
-  DeleteTagResolver
-} from './modules/tag';
-
-import cors from 'cors';
+  DeleteTagResolver,
+} from '@/modules';
 import { SharedContext } from './types';
-import dotenv from 'dotenv';
 
 const main = async (): Promise<void> => {
   // Load env variable
@@ -62,7 +51,6 @@ const main = async (): Promise<void> => {
       ReadQuoteResolver,
       UpdateQuoteResolver,
       DeleteQuoteResolver,
-      ReadQuoteContentResolver,
       CreateCategoryResolver,
       ReadCategoryResolver,
       UpdateCategoryResolver,
