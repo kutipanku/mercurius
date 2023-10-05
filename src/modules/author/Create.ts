@@ -10,10 +10,10 @@ export class CreateAuthorResolver {
   @Mutation(() => Author)
   async createAuthor(
     @Arg('data')
-    { name, pictureUrl, contents }: CreateAuthorInput
+    { name, pictureUrl, contentID, contentEN }: CreateAuthorInput
   ): Promise<Author> {
     const author = await Author.create({
-      name, pictureUrl, contents
+      name, pictureUrl, contentID, contentEN
     }).save();
 
     return author;

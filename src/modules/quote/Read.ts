@@ -29,7 +29,8 @@ export class ReadQuoteResolver {
     } else {
       quotes = await Quote.find({
         skip: (page - 1) * rowPerPage,
-        take: rowPerPage
+        take: rowPerPage,
+        relations: ['tags']
       });
     }
     if (!quotes) {

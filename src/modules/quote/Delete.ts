@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Quote } from '@/entity';
-import { DeleteQuoteInput } from './input/DeleteQuoteInput';
+import { DeleteQuoteInput } from '@/modules/quote/input';
 
 @Resolver(Quote)
 export class DeleteQuoteResolver {

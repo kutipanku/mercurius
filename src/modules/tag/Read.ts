@@ -25,15 +25,14 @@ export class ReadTagResolver {
   ): Promise<Tag[] | null> {
     let tags = [];
     if (rowPerPage === 0) {
-      tags = await Tag.find({
-        relations: ['quotes']
-      });
+      tags = await Tag.find();
     } else {
       tags = await Tag.find({
         skip: (page - 1) * rowPerPage,
         take: rowPerPage,
         relations: ['quotes']
       });
+      console.log('tags', tags);
     }
     if (!tags) {
       return null;

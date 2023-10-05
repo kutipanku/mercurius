@@ -6,11 +6,21 @@ export class UpdateLanguageInput {
   @Field()
   id: number;
 
-  @Field()
+  @Field({
+    nullable: true
+  })
   @Length(1, 255)
-  name: string;
+  contentID: string;
 
-  @Field()
+  @Field({
+    nullable: true
+  })
   @Length(1, 255)
-  shortName: string;
+  contentEN: string;
+
+  @Field({
+    nullable: true
+  })
+  @Length(1, 255)
+  code: string;
 }

@@ -3,11 +3,19 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export class CreateLanguageInput {
-  @Field()
+  @Field({
+    nullable: true
+  })
   @Length(1, 255)
-  name: string;
+  contentID: string;
+
+  @Field({
+    nullable: true
+  })
+  @Length(1, 255)
+  contentEN: string;
 
   @Field()
   @Length(1, 255)
-  shortName: string;
+  code: string;
 }

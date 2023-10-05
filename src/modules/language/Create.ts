@@ -10,11 +10,10 @@ export class CreateLanguageResolver {
   @Mutation(() => Language)
   async createLanguage(
     @Arg('data')
-    { name, shortName }: CreateLanguageInput
+    { contentID, contentEN, code }: CreateLanguageInput
   ): Promise<Language> {
     const language = await Language.create({
-      name,
-      shortName
+      contentID, contentEN, code
     }).save();
 
     return language;

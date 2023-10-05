@@ -10,13 +10,21 @@ export class UpdateLanguageResolver {
   @Mutation(() => Language)
   async updateLanguage(
     @Arg('data')
-    { id, name }: UpdateLanguageInput
+    { id, contentID, contentEN, code }: UpdateLanguageInput
   ): Promise<Language | null> {
     const language = await Language.findOne({ where: { id } });
     if (!language) {
       return null;
     } else {
-      language.name = name;
+      if (contentID) {
+        language.contentID = contentID;
+      }
+      if (contentEN) {
+        language.contentEN = contentEN;
+      }
+      if (code) {
+        language.code = code;
+      }
       await language.save();
     }
 

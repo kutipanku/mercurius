@@ -1,6 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Tag } from '@/entity';
-import { DeleteTagInput } from './input/DeleteTagInput';
+import { DeleteTagInput } from '@/modules/tag/input';
+
 
 @Resolver(Tag)
 export class DeleteTagResolver {

@@ -10,14 +10,22 @@ export class UpdateAuthorResolver {
   @Mutation(() => Author)
   async updateAuthor(
     @Arg('data')
-    { id, name, pictureUrl }: UpdateAuthorInput
+    { id, name, pictureUrl, contentID, contentEN }: UpdateAuthorInput
   ): Promise<Author | null> {
     const author = await Author.findOne({ where: { id } });
     if (!author) {
       return null;
     } else {
       author.name = name;
-      author.pictureUrl = pictureUrl;
+      if (pictureUrl) {
+        author.pictureUrl = pictureUrl;
+      }
+      if (contentID) {
+        author.contentID = contentID;
+      }
+      if (contentEN) {
+        author.contentEN = contentEN;
+      }
       await author.save();
     }
 

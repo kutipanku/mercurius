@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import { Tag } from '@/entity';
-import { AddTagInput } from './input/AddTagInput';
+import { CreateTagInput } from '@/modules/tag/input';
 
 @Resolver(Tag)
 export class CreateTagResolver {
@@ -10,10 +10,10 @@ export class CreateTagResolver {
   @Mutation(() => Tag)
   async createTag(
     @Arg('data')
-    { contents }: AddTagInput
+    { contentID, contentEN }: CreateTagInput
   ): Promise<Tag> {
     const tag = await Tag.create({
-      contents
+      contentID, contentEN
     }).save();
 
     return tag;

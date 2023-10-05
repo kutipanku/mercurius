@@ -1,8 +1,17 @@
+import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
-import { AddCategoryContentInput } from '@/modules/categoryContent/input';
 
 @InputType()
 export class AddCategoryInput {
-  @Field(() => [AddCategoryContentInput])
-  contents: AddCategoryContentInput[];
+  @Field({
+    nullable: true
+  })
+  @Length(1, 255)
+  contentID: string;
+
+  @Field({
+    nullable: true
+  })
+  @Length(1, 255)
+  contentEN: string;
 }
