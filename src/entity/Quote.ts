@@ -2,18 +2,17 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  BaseEntity,
   ManyToOne,
   ManyToMany,
   JoinColumn,
   JoinTable,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  BaseEntity
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Author, Category, QuoteContent, Tag } from '@/entity';
+import { Author, Category, Tag } from '@/entity';
 
 @ObjectType('QuoteEntity')
 @Entity('quote')
@@ -21,13 +20,6 @@ export class Quote extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;
-
-  @Field(() => [QuoteContent])
-  @OneToMany(() => QuoteContent, (content) => content.quote, {
-    cascade: true,
-    eager: true
-  })
-  contents!: QuoteContent[];
 
   @Field()
   @Column({ name: 'author' })
@@ -57,12 +49,28 @@ export class Quote extends BaseEntity {
   @Column()
   status!: string;
 
-  @Field(() => [Tag])
-  @ManyToMany(() => Tag, tag => tag.quotes, {
-    eager: true
+  @Field(() => [Tag], {
+    nullable: true
   })
+  @ManyToMany(() => Tag, (tag) => tag.quotes)
   @JoinTable()
   tags: Tag[];
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentID?: string;
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentEN?: string;
 
   @CreateDateColumn()
   createDate!: Date;

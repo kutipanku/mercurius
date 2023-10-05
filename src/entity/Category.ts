@@ -1,15 +1,15 @@
 import {
   Entity,
-  BaseEntity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Column,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  BaseEntity
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from '@/entity';
-import { CategoryContent } from './CategoryContent';
 
 @ObjectType('CategoryEntity')
 @Entity('category')
@@ -22,12 +22,21 @@ export class Category extends BaseEntity {
   @OneToMany(() => Quote, (quote: Quote) => quote.category)
   quote!: Quote[];
 
-  @Field(() => [CategoryContent])
-  @OneToMany(() => CategoryContent, (content) => content.category, {
-    cascade: true,
-    eager: true
+  @Field({
+    nullable: true
   })
-  contents!: CategoryContent[];
+  @Column({
+    nullable: true
+  })
+  contentID?: string;
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentEN?: string;
 
   @CreateDateColumn()
   createDate!: Date;

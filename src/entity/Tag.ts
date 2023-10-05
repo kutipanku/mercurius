@@ -1,16 +1,15 @@
 import {
   Entity,
-  OneToMany,
-  BaseEntity,
   ManyToMany,
   PrimaryGeneratedColumn,
+  Column,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  JoinTable
+  BaseEntity
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Quote, TagContent } from '@/entity';
+import { Quote } from '@/entity';
 
 @ObjectType('TagEntity')
 @Entity('tag')
@@ -19,17 +18,27 @@ export class Tag extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Field(() => [TagContent])
-  @OneToMany(() => TagContent, (content) => content.tag, {
-    cascade: true,
-    eager: true
+  @Field(() => [Quote], {
+    nullable: true
   })
-  contents!: TagContent[];
-
-  @Field(() => [Quote])
   @ManyToMany(() => Quote, (quote: Quote) => quote.tags)
-  @JoinTable()
   quotes: Quote[];
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentID?: string;
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentEN?: string;
 
   @CreateDateColumn()
   createDate!: Date;

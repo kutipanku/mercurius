@@ -1,16 +1,15 @@
 import {
   Entity,
   Column,
-  BaseEntity,
   OneToMany,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  BaseEntity
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Quote } from '@/entity';
-import { AuthorContent } from './AuthorContent';
 
 @ObjectType('AuthorEntity')
 @Entity('author')
@@ -31,16 +30,25 @@ export class Author extends BaseEntity {
   })
   pictureUrl?: string;
 
-  @Field(() => [AuthorContent])
-  @OneToMany(() => AuthorContent, (content) => content.author, {
-    cascade: true,
-    eager: true
-  })
-  contents!: AuthorContent[];
-
   @Field(() => [Quote])
   @OneToMany(() => Quote, (quote: Quote) => quote.author)
   quotes!: Quote[];
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentID?: string;
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentEN?: string;
 
   @CreateDateColumn()
   createDate!: Date;

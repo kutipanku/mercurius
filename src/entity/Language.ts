@@ -2,10 +2,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  BaseEntity
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
@@ -18,11 +18,23 @@ export class Language extends BaseEntity {
 
   @Field()
   @Column()
-  name!: string;
+  code!: string;
 
-  @Field()
-  @Column()
-  shortName!: string;
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentID?: string;
+
+  @Field({
+    nullable: true
+  })
+  @Column({
+    nullable: true
+  })
+  contentEN?: string;
 
   @CreateDateColumn()
   createDate!: Date;
