@@ -26,6 +26,7 @@ import {
   ReadTagResolver,
   UpdateTagResolver,
   DeleteTagResolver,
+  ListenTwitterResolver
 } from '@/modules';
 import { SharedContext } from './types';
 
@@ -58,7 +59,8 @@ const main = async (): Promise<void> => {
       CreateTagResolver,
       ReadTagResolver,
       UpdateTagResolver,
-      DeleteTagResolver
+      DeleteTagResolver,
+      ListenTwitterResolver
     ]
   });
 

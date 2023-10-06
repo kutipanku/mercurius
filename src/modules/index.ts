@@ -4,3 +4,4 @@ export * from './language';
 export * from './ping';
 export * from './quote';
 export * from './tag';
+export * from './twitter';
