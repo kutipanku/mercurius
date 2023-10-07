@@ -15,3 +15,12 @@ export class ListenTwitterInput {
   @Length(1, 255)
   cronInterval: string;
 }
+
+@InputType()
+export class GetMentionNotificationInput {
+  @Field({
+    nullable: true
+  })
+  @Length(1, 255)
+  action: string;
+}
