@@ -12,8 +12,7 @@ export class ListenTwitterInput {
   @Field({
     nullable: true
   })
-  @Length(1, 255)
-  cronInterval: string;
+  cronInterval: number;
 }
 
 @InputType()
@@ -21,6 +20,5 @@ export class GetMentionNotificationInput {
   @Field({
     nullable: true
   })
-  @Length(1, 255)
   action: string;
 }

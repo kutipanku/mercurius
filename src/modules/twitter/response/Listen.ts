@@ -12,7 +12,7 @@ export class TwitterListenResponse {
   @Field({
     nullable: true
   })
-  cronInterval: string;
+  cronInterval: number;
 
   @Field({
     nullable: true
