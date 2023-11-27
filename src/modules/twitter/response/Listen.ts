@@ -18,6 +18,11 @@ export class TwitterListenResponse {
     nullable: true
   })
   status: string;
+
+  @Field(() => [String], {
+    nullable: true
+  })
+  logs: string[];
 }
 
 @ObjectType('GetMentionNotificationResponse')
@@ -26,4 +31,17 @@ export class GetMentionNotificationResponse {
     nullable: true
   })
   result: Result;
+}
+
+@ObjectType('TweetDetailResponse')
+export class TweetDetailResponse {
+  @Field({
+    nullable: true
+  })
+  content: string;
+
+  @Field(() => [String], {
+    nullable: true
+  })
+  media: string[];
 }
