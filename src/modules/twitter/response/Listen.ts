@@ -33,6 +33,29 @@ export class GetMentionNotificationResponse {
   result: Result;
 }
 
+@ObjectType('TweetProfile')
+export class TweetProfile {
+  @Field({
+    nullable: true
+  })
+  name: string;
+
+  @Field({
+    nullable: true
+  })
+  image: string;
+
+  @Field({
+    nullable: true
+  })
+  id: string;
+
+  @Field({
+    nullable: true
+  })
+  description: string;
+}
+
 @ObjectType('TweetDetailResponse')
 export class TweetDetailResponse {
   @Field({
@@ -44,4 +67,9 @@ export class TweetDetailResponse {
     nullable: true
   })
   media: string[];
+
+  @Field({
+    nullable: true
+  })
+  profile: TweetProfile;
 }

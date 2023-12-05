@@ -129,15 +129,26 @@ const getTweet = async (id: string) => {
 
   try {
     const response = await axios.get(`https://twitter.com/i/api/graphql/g-nnNwMkZpmrGbO2Pk0rag/TweetDetail?variables=%7B%22focalTweetId%22%3A%22${id}%22%2C%22with_rux_injections%22%3Afalse%2C%22includePromotedContent%22%3Atrue%2C%22withCommunity%22%3Atrue%2C%22withQuickPromoteEligibilityTweetFields%22%3Atrue%2C%22withBirdwatchNotes%22%3Atrue%2C%22withVoice%22%3Atrue%2C%22withV2Timeline%22%3Atrue%7D&features=%7B%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22responsive_web_home_pinned_timelines_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22responsive_web_twitter_article_tweet_consumption_enabled%22%3Afalse%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Atrue%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Atrue%2C%22longform_notetweets_rich_text_read_enabled%22%3Atrue%2C%22longform_notetweets_inline_media_enabled%22%3Atrue%2C%22responsive_web_media_download_video_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%7D`, config);
-    const tweetContent = response.data?.data?.threaded_conversation_with_injections_v2?.instructions[0]?.entries[0]?.content?.itemContent?.tweet_results?.result?.legacy?.full_text || '';
-    const tweetMedia = response.data?.data?.threaded_conversation_with_injections_v2?.instructions[0]?.entries[0]?.content?.itemContent?.tweet_results?.result?.legacy?.entities?.media || [];
+    const result = response.data?.data?.threaded_conversation_with_injections_v2?.instructions[0]?.entries[0]?.content?.itemContent?.tweet_results?.result;
+    const tweetContent = result?.legacy?.full_text || '';
+    const tweetMedia = result?.legacy?.entities?.media || [];
+    const profileName = result?.core.user_results?.result?.legacy?.name;
+    const profileImage = result?.core.user_results?.result?.legacy?.profile_image_url_https;
+    const profileId = result?.core.user_results?.result?.legacy?.screen_name;
+    const profileDescription = result?.core.user_results?.result?.legacy?.description;
     const parsedTweetMedia = tweetMedia.map((media?: { media_url_https: string }) => media?.media_url_https || '');
     console.log('[LOG - Twitter] -- getTweet -- | tweetContent', tweetContent);
     return {
       status: 'success',
       message: tweetContent,
       location: 'getTweet',
-      media: parsedTweetMedia
+      media: parsedTweetMedia,
+      profile: {
+        name: profileName,
+        image: profileImage,
+        id: profileId,
+        description: profileDescription,
+      }
     };
   } catch (error) {
     console.log('[LOG - Twitter] -- getTweet -- | error', error.response.data);
@@ -145,7 +156,13 @@ const getTweet = async (id: string) => {
       status: 'error',
       message: error.response.data,
       location: 'getTweet',
-      media: []
+      media: [],
+      profile: {
+        name: '',
+        image: '',
+        id: '',
+        description: '',
+      }
     };
   }
 };
@@ -374,8 +391,8 @@ export class ListenTwitterResolver {
   @Query(() => TweetDetailResponse)
   async getTweetDetail(@Arg('id') id: string): Promise<TweetDetailResponse | null> {
     console.log('[DEBUG] running getTweetDetail');
-    const { message, media } = await getTweet(id);
+    const { message, media, profile } = await getTweet(id);
 
-    return { content: message, media };
+    return { content: message, media, profile };
   }
 }
